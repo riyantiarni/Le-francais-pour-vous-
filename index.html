@@ -1,1 +1,309 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le français, c'est facile !</title>
+
+<style>
+:root {
+  --yellow: #FFCF56;
+  --coral: #FF8066;
+  --turquoise: #5CBCC5;
+  --cream: #F8F4E9;
+  --navy: #253A53;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+header h2 { color: var(--yellow); }
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 8px;
+  font-size: 14px;
+}
+
+.hero {
+  text-align: center;
+  padding: 75px 20px;
+  background: var(--yellow);
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: auto;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--navy);
+  color: white;
+  padding: 13px 25px;
+  border: none;
+  border-radius: 30px;
+  margin-top: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+section {
+  padding: 55px 8%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 25px;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 4px 12px #253A5315;
+  transition: transform .2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 { margin-bottom: 10px; }
+
+.card button {
+  border: none;
+  background: var(--navy);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.expressions { border-top: 7px solid var(--yellow); }
+.grammaire { border-top: 7px solid var(--coral); }
+.exercices { border-top: 7px solid var(--turquoise); }
+.assistant { border-top: 7px solid var(--navy); }
+
+.quiz-box {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background: white;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.quiz-box button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: var(--cream);
+  color: var(--navy);
+  cursor: pointer;
+}
+
+.quiz-box button:hover {
+  background: var(--yellow);
+}
+
+#resultat {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+footer {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media(max-width:600px) {
+  header { justify-content: center; }
+  nav { text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🇫🇷 Le français, c'est facile !</h2>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#cours">Mes cours</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#assistant">Assistant IA</a>
+  </nav>
+</header>
+
+<div class="hero" id="accueil">
+  <h1>Bonjour les élèves ! 👋</h1>
+  <p>
+    Bienvenue dans ton espace d'apprentissage du français.
+    Découvre, apprends, joue et progresse à ton rythme !
+  </p>
+  <a href="#cours" class="btn">Je commence ! 🚀</a>
+</div>
+
+<section id="cours">
+  <h2 class="section-title">📚 Découvre mes rubriques</h2>
+
+  <div class="cards">
+
+    <div class="card expressions">
+      <h3>💬 Expressions</h3>
+      <p>Apprends à saluer, te présenter et communiquer en français.</p>
+      <button onclick="ouvrir('expressions')">Découvrir</button>
+    </div>
+
+    <div class="card grammaire">
+      <h3>📖 Grammaire</h3>
+      <p>Découvre les règles essentielles du français A1.1.</p>
+      <button onclick="ouvrir('grammaire')">Découvrir</button>
+    </div>
+
+    <div class="card exercices">
+      <h3>🎯 Je m'entraîne</h3>
+      <p>Teste tes connaissances avec des exercices et des quiz.</p>
+      <button onclick="document.getElementById('quiz').scrollIntoView()">Jouer</button>
+    </div>
+
+    <div class="card assistant">
+      <h3>🤖 Mon assistant IA</h3>
+      <p>Pose tes questions et découvre le français avec ton assistant.</p>
+      <button onclick="document.getElementById('assistant').scrollIntoView()">Parler</button>
+    </div>
+
+  </div>
+</section>
+
+<section id="contenu">
+  <h2 class="section-title" id="titre-cours">🌟 À découvrir</h2>
+  <div class="quiz-box" id="detail">
+    Choisis une rubrique pour découvrir les leçons !
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title">🎮 Petit quiz A1.1</h2>
+
+  <div class="quiz-box">
+    <h3>Comment dit-on « Good morning » en français ?</h3>
+
+    <button onclick="verifier(false)">A. Bonne nuit</button>
+    <button onclick="verifier(true)">B. Bonjour</button>
+    <button onclick="verifier(false)">C. Au revoir</button>
+
+    <p id="resultat"></p>
+  </div>
+</section>
+
+<section id="assistant">
+  <h2 class="section-title">🤖 Mon assistant de français</h2>
+
+  <div class="quiz-box">
+    <h3>Bonjour ! Je suis ton assistant virtuel.</h3>
+    <p>Je suis là pour t'aider à apprendre le français.</p>
+    <p>Cette zone sera connectée à une véritable intelligence artificielle dans une prochaine étape.</p>
+    <p>En attendant, tu peux découvrir les leçons et faire les quiz ! 😊</p>
+  </div>
+</section>
+
+<footer>
+  <p>🇫🇷 Le français, c'est facile !</p>
+  <p>Apprendre le français avec plaisir ❤️</p>
+  <small>Plateforme pédagogique – Niveau A1.1</small>
+</footer>
+
+<script>
+function ouvrir(rubrique) {
+  const detail = document.getElementById("detail");
+  const titre = document.getElementById("titre-cours");
+
+  if (rubrique === "expressions") {
+    titre.innerText = "💬 Expressions françaises";
+
+    detail.innerHTML = `
+      <h3>Les salutations</h3>
+      <p>Bonjour ! = Hello!</p>
+      <p>Salut ! = Hi!</p>
+      <p>Bonsoir ! = Good evening!</p>
+      <p>Au revoir ! = Goodbye!</p>
+      <p>À bientôt ! = See you soon!</p>
+    `;
+  }
+
+  if (rubrique === "grammaire") {
+    titre.innerText = "📖 Grammaire française";
+
+    detail.innerHTML = `
+      <h3>Le verbe ÊTRE au présent</h3>
+      <p>Je suis</p>
+      <p>Tu es</p>
+      <p>Il / Elle est</p>
+      <p>Nous sommes</p>
+      <p>Vous êtes</p>
+      <p>Ils / Elles sont</p>
+    `;
+  }
+
+  document.getElementById("contenu").scrollIntoView();
+}
+
+function verifier(correct) {
+  const resultat = document.getElementById("resultat");
+
+  if (correct) {
+    resultat.innerText = "Bravo ! 🎉 Bonne réponse !";
+    resultat.style.color = "green";
+  } else {
+    resultat.innerText = "Essaie encore ! Tu peux le faire ! 💪";
+    resultat.style.color = "#FF8066";
+  }
+}
+</script>
+
+</body>
+</html>
+
