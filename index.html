@@ -255,7 +255,122 @@ footer {
   <small>Plateforme pédagogique – Niveau A1.1</small>
 </footer>
 
+
 <script>
+function ouvrir(rubrique) {
+  const detail = document.getElementById("detail");
+  const titre = document.getElementById("titre-cours");
+
+  if (rubrique === "expressions") {
+    titre.innerText = "💬 Expressions françaises";
+
+    const categories = [
+      {
+        nom: "🔵 Salutations",
+        expressions: [
+          ["Bonjour !", "Selamat pagi/siang", "Hello / Good morning"],
+          ["Bonsoir !", "Selamat malam", "Good evening"],
+          ["Salut !", "Hai!", "Hi!"],
+          ["Coucou !", "Hai! (akrab)", "Hey!"],
+          ["Bienvenue !", "Selamat datang", "Welcome!"],
+          ["Enchanté(e) !", "Senang berkenalan", "Nice to meet you!"],
+          ["Ravi(e) de vous rencontrer !", "Senang bertemu dengan Anda", "Pleased to meet you!"],
+          ["Bon après-midi !", "Semoga siangmu menyenangkan", "Have a nice afternoon!"]
+        ]
+      },
+      {
+        nom: "🔴 Prendre congé",
+        expressions: [
+          ["Au revoir !", "Sampai jumpa!", "Goodbye!"],
+          ["Salut !", "Dah!", "Bye!"],
+          ["À bientôt !", "Sampai nanti!", "See you soon!"],
+          ["À demain !", "Sampai besok!", "See you tomorrow!"],
+          ["À tout à l'heure !", "Sampai nanti!", "See you later!"],
+          ["Bonne journée !", "Semoga harimu menyenangkan!", "Have a nice day!"],
+          ["Bonne soirée !", "Semoga malammu menyenangkan!", "Have a nice evening!"],
+          ["Bonne nuit !", "Selamat tidur!", "Good night!"]
+        ]
+      },
+      {
+        nom: "⚪ Demander des nouvelles",
+        expressions: [
+          ["Comment ça va ?", "Apa kabar?", "How are you?"],
+          ["Comment vas-tu ?", "Apa kabarmu?", "How are you?"],
+          ["Comment allez-vous ?", "Apa kabar Anda?", "How are you?"],
+          ["Tu vas bien ?", "Kamu baik-baik saja?", "Are you doing well?"],
+          ["Vous allez bien ?", "Anda baik-baik saja?", "Are you doing well?"],
+          ["Quoi de neuf ?", "Ada kabar baru?", "What's new?"],
+          ["Comment ça se passe ?", "Bagaimana semuanya berjalan?", "How's it going?"],
+          ["Ça fait longtemps !", "Sudah lama tidak bertemu!", "Long time no see!"]
+        ]
+      }
+    ];
+
+    let contenu = "";
+
+    categories.forEach(categorie => {
+      contenu += `
+        <div class="expression-category">
+          <h3>${categorie.nom}</h3>
+          <div class="table-wrapper">
+            <table class="expression-table">
+              <thead>
+                <tr>
+                  <th>🇫🇷 Français</th>
+                  <th>🇮🇩 Bahasa Indonesia</th>
+                  <th>🇬🇧 English</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${categorie.expressions.map(e => `
+                  <tr>
+                    <td><strong>${e[0]}</strong></td>
+                    <td>${e[1]}</td>
+                    <td>${e[2]}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    });
+
+    detail.innerHTML = contenu;
+  }
+
+  else if (rubrique === "grammaire") {
+    titre.innerText = "📖 Grammaire française";
+
+    detail.innerHTML = `
+      <h3>Le verbe ÊTRE au présent</h3>
+      <p>Je suis</p>
+      <p>Tu es</p>
+      <p>Il / Elle est</p>
+      <p>Nous sommes</p>
+      <p>Vous êtes</p>
+      <p>Ils / Elles sont</p>
+    `;
+  }
+
+  document.getElementById("contenu").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function verifier(correct) {
+  const resultat = document.getElementById("resultat");
+
+  if (correct) {
+    resultat.innerText = "Bravo ! 🎉 Bonne réponse !";
+    resultat.style.color = "green";
+  } else {
+    resultat.innerText = "Essaie encore ! Tu peux le faire ! 💪";
+    resultat.style.color = "#ED2939";
+  }
+}
+</script>
+
 
 function ouvrir(rubrique) {
   const detail = document.getElementById("detail");
